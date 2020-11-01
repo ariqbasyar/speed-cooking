@@ -60,13 +60,11 @@ class MainActivity : AppCompatActivity() {
     override fun attachBaseContext(base: Context?) {
         localeManager = LocaleManager(base)
         super.attachBaseContext(base?.let { localeManager.setLocale(it) })
-        Log.d("ASDASD", "attachBaseContext")
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         localeManager.setLocale(this)
-        Log.d("ASDASD", "onConfigurationChanged: " + newConfig.locale.language)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
