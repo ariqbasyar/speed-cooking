@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Masak Cepat</string>
+    <string name="navigation_drawer_open">Buka panel navigasi</string>
+    <string name="navigation_drawer_close">tutup panel navigas</string>
+    <string name="nav_header_desc">Tajuk navigasi</string>
+    <string name="action_settings">Pengaturan</string>
+    <string name="language_title">Ubah bahasa</string>
+    <string name="menu_gallery">Galeri</string>
+    <string name="menu_home">Lol lagi</string>
+    <string name="menu_slideshow">Slideshow</string>
+</resources>
