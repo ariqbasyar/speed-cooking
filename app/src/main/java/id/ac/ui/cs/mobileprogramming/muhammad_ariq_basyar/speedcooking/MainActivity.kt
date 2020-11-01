@@ -1,38 +1,37 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking
 
-import android.content.ClipData
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.preference.PreferenceManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.manager.LocaleManager
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var  localeManager: LocaleManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(applicationContext)
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -43,8 +42,11 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow), drawerLayout)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
+            ), drawerLayout
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -55,12 +57,17 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-//    override fun attachBaseContext(newBase: Context?) {
-//        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(newBase)
-//        val lang = sharedPreferences.getString("lang", "en")
-//        Log.d("ASDASD", "attachBaseContext: $lang")
-//        super.attachBaseContext(SettingsActivity.ApplicationLanguageHelper.wrap(newBase!!, lang!!))
-//    }
+    override fun attachBaseContext(base: Context?) {
+        localeManager = LocaleManager(base)
+        super.attachBaseContext(base?.let { localeManager.setLocale(it) })
+        Log.d("ASDASD", "attachBaseContext")
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        localeManager.setLocale(this)
+        Log.d("ASDASD", "onConfigurationChanged: " + newConfig.locale.language)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
