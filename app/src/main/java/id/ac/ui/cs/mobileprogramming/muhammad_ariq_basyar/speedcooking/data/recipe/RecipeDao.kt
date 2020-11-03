@@ -7,7 +7,7 @@ import androidx.room.Query
 
 @Dao
 interface RecipeDao {
-    @Query("SELECT * FROM recipes ORDER BY name")
+    @Query("SELECT * FROM recipes ORDER BY name ASC")
     fun getRecipes(): LiveData<List<Recipe>>
 
     @Query("SELECT * FROM recipes WHERE id = :recipeId")

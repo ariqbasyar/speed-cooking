@@ -4,8 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
+import dagger.hilt.android.AndroidEntryPoint
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.manager.LocaleManager
 
+@AndroidEntryPoint
 class SettingsActivity : AppCompatActivity() {
     private lateinit var  localeManager: LocaleManager
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,13 +1,31 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.home
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.duration.Duration
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.duration.DurationRepository
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.ingredient.Ingredient
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.ingredient.IngredientRepository
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.Recipe
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.RecipeDao
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.RecipeRepository
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel @ViewModelInject internal constructor(
+    recipeRepository: RecipeRepository,
+    private val ingredientRepository: IngredientRepository,
+    private val durationRepository: DurationRepository
+): ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    val recipeList: LiveData<List<Recipe>> =
+        recipeRepository.getRecipes()
+
+    fun getIngredients(recipeId: Long): LiveData<List<Ingredient>> {
+        return ingredientRepository.getIngredientsFromRecipe(recipeId)
     }
-    val text: LiveData<String> = _text
+
+    fun getDurations(recipeId: Long): LiveData<List<Duration>> {
+        return durationRepository.getDurationsFromRecipe(recipeId)
+    }
 }

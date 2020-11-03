@@ -1,8 +1,11 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.ingredient
 
+import android.os.Parcelable
 import androidx.room.*
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.Recipe
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(
     tableName = "ingredients",
     foreignKeys = [
@@ -13,8 +16,7 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.reci
 data class Ingredient(
     @ColumnInfo(name = "recipe_id") val recipeId: Long,
     @ColumnInfo(name = "recipe_ingredient") val recipeIngredient: String,
-) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var ingredientId: Long = 0
-}
+): Parcelable

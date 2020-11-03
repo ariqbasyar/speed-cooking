@@ -1,7 +1,10 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe
 
+import android.os.Parcelable
 import androidx.room.*
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(
     tableName = "recipes",
 )
@@ -9,8 +12,7 @@ data class Recipe(
     val name: String,
     val procedure: String,
     @ColumnInfo(name = "image_url") val imageUrl: String,
-) {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    var recipeId: Long = 0
-}
+    val recipeId: Long = 0
+): Parcelable

@@ -1,31 +1,78 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.NewRecipeActivity
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.adapters.RecipeAdapter
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.Recipe
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.FragmentHomeBinding
+import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : Fragment() {
+const val RECIPE_KEY = "recipe_key"
 
-    private lateinit var homeViewModel: HomeViewModel
+@AndroidEntryPoint
+class HomeFragment : Fragment(), RecipeAdapter.RecipeClickListener {
+
+    private val homeViewModel: HomeViewModel by lazy {
+        ViewModelProviders.of(this).get(HomeViewModel::class.java)
+    }
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var recipeAdapter: RecipeAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_home,
+            container,
+            false
+        )
+
+        //Set adapter, divider and default animator to the recycler view
+        recipeAdapter = RecipeAdapter(this)
+        val dividerItemDecoration = DividerItemDecoration(
+            requireActivity(), LinearLayoutManager.VERTICAL
+        )
+        with(binding.recycler) {
+            addItemDecoration(dividerItemDecoration)
+            itemAnimator = DefaultItemAnimator()
+            adapter = recipeAdapter
+        }
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        fab.setOnClickListener { _ ->
+            val intent = Intent(context, NewRecipeActivity::class.java)
+            startActivity(intent)
+        }
+
+        homeViewModel.recipeList.observe(viewLifecycleOwner, { recipes ->
+            recipeAdapter.recipeList = recipes
         })
-        return root
+    }
+
+    override fun onRecipeClicked(recipe: Recipe) {
+        val parcel = Bundle()
+        parcel.putParcelable(RECIPE_KEY, recipe)
+
+        // TODO detail recipe
     }
 }

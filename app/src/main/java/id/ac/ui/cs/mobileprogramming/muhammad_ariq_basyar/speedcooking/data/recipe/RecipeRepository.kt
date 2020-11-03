@@ -1,6 +1,5 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe
 
-import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.ingredient.IngredientDao
 import javax.inject.Inject
 import javax.inject.Singleton
 

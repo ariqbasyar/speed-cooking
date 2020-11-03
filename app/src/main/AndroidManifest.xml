@@ -3,6 +3,7 @@
     package="id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking">
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,6 +22,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".SettingsActivity"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
+        <activity android:name=".NewRecipeActivity"
             android:parentActivityName=".MainActivity">
 
         </activity>
