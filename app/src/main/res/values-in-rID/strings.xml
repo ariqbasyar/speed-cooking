@@ -9,4 +9,11 @@
     <string name="menu_gallery">Galeri</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="language_title">Bahasa</string>
+    <string name="upload_picture_text">Masukkan Gambar</string>
+    <string name="ingredients_text">Bahan Baku:</string>
+    <string name="add_more_ingredient_text">Tambah Bahan Baku</string>
+    <string name="recipe_name_text">Nama Resep</string>
+    <string name="description_procedures_text">Deskripsi/Prosedur</string>
+    <string name="save_text">Simpan</string>
+    <string name="upload_image_content_desc">Masukkan Gambar</string>
 </resources>
