@@ -47,8 +47,6 @@ class RecipeAdapter(private val mListener: RecipeClickListener) :
                 val binding = DataBindingUtil
                     .inflate<RecipeItemBinding>(layoutInflater, R.layout.recipe_item,
                         parent, false)
-                val recipe = binding.recipe
-//                binding.previewImage.setImageURI(recipe?.imageUri)
                 return RecipeViewHolder(binding)
             }
         }
