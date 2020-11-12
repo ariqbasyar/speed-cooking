@@ -17,4 +17,5 @@
     <string name="save_text">Save</string>
     <string name="upload_image_content_desc">Upload Image</string>
     <string name="ingredient_hint_input">ingredient</string>
+    <string name="food_preview">food preview</string>
 </resources>

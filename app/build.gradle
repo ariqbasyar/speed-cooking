@@ -38,12 +38,10 @@ android {
     }
 }
 
-//configurations.all {
-//    resolutionStrategy {
-//        force("org.antlr:antlr4-runtime:4.5.3")
-//        force("org.antlr:antlr4-tool:4.5.3")
-//    }
-//}
+repositories {
+    google()
+    jcenter()
+}
 
 dependencies {
     def room_version = "2.2.5"
@@ -69,6 +67,10 @@ dependencies {
 
     // data binding
     kapt 'com.android.databinding:compiler:3.1.4'
+
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     // optional - Test helpers
     implementation fileTree(dir: "libs", include: ["*.jar"])

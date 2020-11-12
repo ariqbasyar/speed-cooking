@@ -12,7 +12,7 @@ import kotlinx.android.parcel.Parcelize
 data class Recipe(
     val name: String,
     val procedure: String,
-    @ColumnInfo(name = "image_url") val imageUrl: Uri,
+    @ColumnInfo(name = "image_uri") val imageUri: Uri,
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val recipeId: Long = 0

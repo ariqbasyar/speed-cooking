@@ -17,4 +17,5 @@
     <string name="save_text">Simpan</string>
     <string name="upload_image_content_desc">Masukkan Gambar</string>
     <string name="ingredient_hint_input">Bahan Baku</string>
+    <string name="food_preview">pratinjau makanan</string>
 </resources>

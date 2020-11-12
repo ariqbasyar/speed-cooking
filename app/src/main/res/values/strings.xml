@@ -20,4 +20,5 @@
     <string name="upload_image_content_desc">Upload Image</string>
     <string name="dash_text_ingredient_input" translatable="false">-</string>
     <string name="ingredient_hint_input">ingredient</string>
+    <string name="food_preview">food preview</string>
 </resources>
