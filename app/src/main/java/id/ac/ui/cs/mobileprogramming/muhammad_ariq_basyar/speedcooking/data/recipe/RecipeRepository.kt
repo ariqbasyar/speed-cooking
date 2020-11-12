@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe
 
+import android.net.Uri
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -11,7 +12,7 @@ class RecipeRepository @Inject constructor(
     suspend fun createRecipe(
         name: String,
         procedure: String,
-        imageUrl: String
+        imageUrl: Uri
     ): Long {
         val recipe = Recipe(name, procedure, imageUrl)
         return recipeDao.insert(recipe)

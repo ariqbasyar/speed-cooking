@@ -1,9 +1,8 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.converter.Converters
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.duration.Duration
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.duration.DurationDao
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.ingredient.Ingredient
@@ -12,6 +11,7 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.reci
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.RecipeDao
 
 @Database(entities = [Recipe::class, Ingredient::class, Duration::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun recipeDao(): RecipeDao
     abstract fun ingredientDao(): IngredientDao
