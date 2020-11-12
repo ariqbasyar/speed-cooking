@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/uploaded_image_view"
+                android:id="@+id/selected_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="241dp"
                 app:srcCompat="@drawable/ic_menu_gallery"
@@ -50,8 +50,8 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,10 +64,16 @@
                     android:layout_height="wrap_content"
                     android:text="@string/ingredients_text" />
 
-                <ListView
-                    android:id="@+id/add_ingredient_list_view"
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="120dp">
+
+                    <LinearLayout
+                        android:id="@+id/add_ingredient_linear_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="190dp"
+                        android:orientation="vertical" />
+                </ScrollView>
 
                 <Button
                     android:id="@+id/add_ingredient_button"
@@ -83,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/recipe_name_text"
+                android:text="@={viewModel.name}"
                 android:inputType="textPersonName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,6 +101,7 @@
                 android:layout_height="73dp"
                 android:ems="10"
                 android:hint="@string/description_procedures_text"
+                android:text="@={viewModel.procedure}"
                 android:inputType="textMultiLine"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

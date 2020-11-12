@@ -18,4 +18,6 @@
     <string name="description_procedures_text">Description/Procedures</string>
     <string name="save_text">Save</string>
     <string name="upload_image_content_desc">Upload Image</string>
+    <string name="dash_text_ingredient_input" translatable="false">-</string>
+    <string name="ingredient_hint_input">ingredient</string>
 </resources>
