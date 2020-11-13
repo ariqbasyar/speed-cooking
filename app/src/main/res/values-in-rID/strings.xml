@@ -17,4 +17,6 @@
     <string name="upload_image_content_desc">Masukkan Gambar</string>
     <string name="ingredient_hint_input">Bahan Baku</string>
     <string name="food_preview">pratinjau makanan</string>
+    <string name="best_record_text">Rekor terbaik</string>
+    <string name="history_text">Riwayat:</string>
 </resources>

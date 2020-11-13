@@ -20,4 +20,6 @@
     <string name="dash_text_ingredient_input" translatable="false">-</string>
     <string name="ingredient_hint_input">ingredient</string>
     <string name="food_preview">food preview</string>
+    <string name="best_record_text">Best record:</string>
+    <string name="history_text">History:</string>
 </resources>
