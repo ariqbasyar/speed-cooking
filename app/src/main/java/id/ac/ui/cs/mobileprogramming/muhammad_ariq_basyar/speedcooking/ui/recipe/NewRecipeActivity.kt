@@ -1,9 +1,10 @@
-package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking
+package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.recipe
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import dagger.hilt.android.AndroidEntryPoint
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 
 @AndroidEntryPoint
 class NewRecipeActivity: AppCompatActivity() {

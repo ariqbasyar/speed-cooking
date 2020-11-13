@@ -1,10 +1,11 @@
-package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking
+package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.settings
 
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
 import dagger.hilt.android.AndroidEntryPoint
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.manager.LocaleManager
 
 @AndroidEntryPoint

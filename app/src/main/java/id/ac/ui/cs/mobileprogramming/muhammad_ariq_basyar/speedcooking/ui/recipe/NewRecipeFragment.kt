@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking
+package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.recipe
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -17,6 +17,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import dagger.hilt.android.AndroidEntryPoint
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.MainActivity
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.NewRecipeFragmentBinding
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.NewRecipeViewModels
 import kotlinx.android.synthetic.main.new_recipe_fragment.*
@@ -94,8 +96,8 @@ class NewRecipeFragment: Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode) {
             PERMISSION_CODE -> {
-                if (grantResults.size > 0 &&
-                    grantResults[0] == PermissionChecker.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() &&
+                        grantResults[0] == PermissionChecker.PERMISSION_GRANTED) {
                     pickImage()
                 } else {
                     Toast.makeText(context, "Permission denied.", Toast.LENGTH_LONG).show()
@@ -119,7 +121,7 @@ class NewRecipeFragment: Fragment() {
     }
 
     private fun saveIngredientsEditText() {
-        ingredientList.children.iterator().forEach {
+        ingredientList.children.forEach {
             val editText: EditText = it.findViewById(R.id.ingredient_edit_text)
             newRecipeViewModels.addIngredient(editText.text.toString())
         }

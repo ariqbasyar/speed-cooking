@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.slideshow
+package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.about
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,20 +12,20 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 
 @AndroidEntryPoint
-class SlideshowFragment : Fragment() {
+class AboutFragment : Fragment() {
 
-    private lateinit var slideshowViewModel: SlideshowViewModel
+    private lateinit var aboutViewModel: AboutViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_slideshow, container, false)
-        val textView: TextView = root.findViewById(R.id.text_slideshow)
-        slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
+        aboutViewModel =
+                ViewModelProviders.of(this).get(AboutViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_about, container, false)
+        val textView: TextView = root.findViewById(R.id.text_about)
+        aboutViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

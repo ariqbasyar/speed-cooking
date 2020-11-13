@@ -25,11 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsActivity"
+        <activity android:name=".ui.settings.SettingsActivity"
             android:parentActivityName=".MainActivity">
 
         </activity>
-        <activity android:name=".NewRecipeActivity"
+        <activity android:name=".ui.recipe.NewRecipeActivity"
             android:parentActivityName=".MainActivity">
 
         </activity>

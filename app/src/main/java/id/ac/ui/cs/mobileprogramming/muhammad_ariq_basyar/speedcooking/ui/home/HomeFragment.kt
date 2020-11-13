@@ -12,14 +12,16 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.NewRecipeActivity
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.recipe.NewRecipeActivity
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.adapters.RecipeAdapter
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.ingredient.IngredientRepository
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.Recipe
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
+import javax.inject.Inject
 
-const val RECIPE_KEY = "recipe_key"
+const val RECIPE_KEY = "recipeKey"
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(), RecipeAdapter.RecipeClickListener {
@@ -27,6 +29,8 @@ class HomeFragment : Fragment(), RecipeAdapter.RecipeClickListener {
     private val homeViewModel: HomeViewModel by lazy {
         ViewModelProviders.of(this).get(HomeViewModel::class.java)
     }
+    @Inject
+    lateinit var ingredientRepository: IngredientRepository
     private lateinit var binding: FragmentHomeBinding
     private lateinit var recipeAdapter: RecipeAdapter
 
@@ -71,7 +75,7 @@ class HomeFragment : Fragment(), RecipeAdapter.RecipeClickListener {
     override fun onRecipeClicked(recipe: Recipe) {
         val parcel = Bundle()
         parcel.putParcelable(RECIPE_KEY, recipe)
-
+        
         // TODO detail recipe
     }
 }
