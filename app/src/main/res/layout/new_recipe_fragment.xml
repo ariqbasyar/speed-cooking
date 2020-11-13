@@ -56,7 +56,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/procedures_input">
+                app:layout_constraintTop_toBottomOf="@+id/procedure_input">
 
                 <TextView
                     android:id="@+id/ingredients_title_text"
@@ -96,7 +96,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/procedures_input"
+                android:id="@+id/procedure_input"
                 android:layout_width="match_parent"
                 android:layout_height="73dp"
                 android:ems="10"

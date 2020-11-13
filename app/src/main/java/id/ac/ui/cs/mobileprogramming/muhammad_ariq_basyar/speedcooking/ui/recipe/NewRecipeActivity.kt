@@ -12,7 +12,7 @@ class NewRecipeActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.new_recipe_activity)
         supportFragmentManager.commit {
-            add(R.id.new_recipe_container, NewRecipeFragment())
+            add(R.id.recipe_container, NewRecipeFragment())
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
