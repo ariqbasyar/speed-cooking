@@ -2,9 +2,14 @@ package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.recip
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +27,12 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.NewRecipeFragmentBinding
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.NewRecipeViewModels
 import kotlinx.android.synthetic.main.new_recipe_fragment.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.util.*
+
 
 const val PICK_IMAGE = 100
 const val PERMISSION_CODE = 101
@@ -64,9 +75,10 @@ class NewRecipeFragment: Fragment() {
 
         binding.uploadPictureButton.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (context?.let { it1 ->
-                        PermissionChecker.checkSelfPermission(it1,android.Manifest.permission.READ_EXTERNAL_STORAGE)
-                    } == PermissionChecker.PERMISSION_DENIED) {
+                if (PermissionChecker.checkSelfPermission(
+                        context!!,
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE
+                    ) == PermissionChecker.PERMISSION_DENIED) {
                     val permissions = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
                     requestPermissions(permissions, PERMISSION_CODE)
                 } else {
@@ -77,8 +89,8 @@ class NewRecipeFragment: Fragment() {
             }
         }
 
-        newRecipeViewModels.imageUrl.observe(viewLifecycleOwner) {
-            selected_image_view.setImageURI(it)
+        newRecipeViewModels.imageUri.observe(viewLifecycleOwner) { imageUri ->
+            selected_image_view.setImageURI(imageUri)
         }
     }
 
@@ -97,7 +109,8 @@ class NewRecipeFragment: Fragment() {
         when(requestCode) {
             PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() &&
-                        grantResults[0] == PermissionChecker.PERMISSION_GRANTED) {
+                    grantResults[0] == PermissionChecker.PERMISSION_GRANTED
+                ) {
                     pickImage()
                 } else {
                     Toast.makeText(context, "Permission denied.", Toast.LENGTH_LONG).show()
@@ -109,7 +122,12 @@ class NewRecipeFragment: Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == PICK_IMAGE) {
-            newRecipeViewModels.setImageUrl(data?.data)
+            when (requestCode) {
+                PICK_IMAGE -> {
+                    val mData = data?.data
+                    newRecipeViewModels.setImageUri(mData)
+                }
+            }
         }
     }
 

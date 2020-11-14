@@ -18,6 +18,7 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.adapters.
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.ingredient.IngredientRepository
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.Recipe
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.FragmentHomeBinding
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.recipe.DetailRecipeActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
@@ -73,9 +74,9 @@ class HomeFragment : Fragment(), RecipeAdapter.RecipeClickListener {
     }
 
     override fun onRecipeClicked(recipe: Recipe) {
-        val parcel = Bundle()
-        parcel.putParcelable(RECIPE_KEY, recipe)
-        
-        // TODO detail recipe
+        val recipeId = recipe.recipeId
+        val detailRecipe = Intent(context, DetailRecipeActivity::class.java)
+        detailRecipe.putExtra(RECIPE_KEY, recipeId)
+        startActivity(detailRecipe)
     }
 }

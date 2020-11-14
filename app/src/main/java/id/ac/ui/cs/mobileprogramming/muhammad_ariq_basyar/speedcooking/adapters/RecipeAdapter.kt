@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.adapters
 
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -62,7 +63,7 @@ class RecipeAdapter(private val mListener: RecipeClickListener) :
 fun bindImageFromUrl(view: ImageView, imageUri: Uri?) {
     if (imageUri != null) {
         Glide.with(view.context)
-            .load(imageUri)
+            .load(Drawable.createFromPath(imageUri.toString()))
             .into(view)
     }
 }

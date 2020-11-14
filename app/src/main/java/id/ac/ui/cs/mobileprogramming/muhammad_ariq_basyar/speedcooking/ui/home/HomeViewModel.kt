@@ -13,19 +13,9 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.reci
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.RecipeRepository
 
 class HomeViewModel @ViewModelInject internal constructor(
-    recipeRepository: RecipeRepository,
-    private val ingredientRepository: IngredientRepository,
-    private val durationRepository: DurationRepository
+    recipeRepository: RecipeRepository
 ): ViewModel() {
 
     val recipeList: LiveData<List<Recipe>> =
         recipeRepository.getRecipes()
-
-    fun getIngredients(recipeId: Long): LiveData<List<Ingredient>> {
-        return ingredientRepository.getIngredientsFromRecipe(recipeId)
-    }
-
-    fun getDurations(recipeId: Long): LiveData<List<Duration>> {
-        return durationRepository.getDurationsFromRecipe(recipeId)
-    }
 }
