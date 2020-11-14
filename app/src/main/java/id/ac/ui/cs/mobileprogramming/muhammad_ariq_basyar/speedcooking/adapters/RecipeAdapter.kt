@@ -64,6 +64,7 @@ fun bindImageFromUrl(view: ImageView, imageUri: Uri?) {
     if (imageUri != null) {
         Glide.with(view.context)
             .load(Drawable.createFromPath(imageUri.toString()))
+            .placeholder(R.drawable.ic_menu_gallery)
             .into(view)
     }
 }
