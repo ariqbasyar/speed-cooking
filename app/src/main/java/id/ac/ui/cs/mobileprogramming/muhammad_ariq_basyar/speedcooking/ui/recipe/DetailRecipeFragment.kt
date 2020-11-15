@@ -54,7 +54,6 @@ class DetailRecipeFragment: Fragment() {
             container,
             false
         )
-        binding.viewModel = detailRecipeViewModels
         downloadAbleFrameLayout = binding.downloadableLayout
         binding.addNewRecordButton.setOnClickListener {
             fragmentManager!!.commit {

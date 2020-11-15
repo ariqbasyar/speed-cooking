@@ -24,6 +24,6 @@
     <string name="reset_button_text">Ulangi</string>
     <string name="save_button_text">Simpan</string>
     <string name="about_me_title">Tentang Saya</string>
-    <string name="about_me_text">Nama saya Muhammad Ariq Basyar. Mahasiswa dari Universitas Indonesia di Fakultas Ilmu Komputer</string>
     <string name="toast_image_saved">Tersimpan ke gallery</string>
+    <string name="english_language">Inggris</string>
 </resources>

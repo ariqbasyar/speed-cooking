@@ -28,6 +28,6 @@
     <string name="save_button_text">Save</string>
     <string name="init_stopwatch" translatable="false">00:00:00 000</string>
     <string name="about_me_title">About Me</string>
-    <string name="about_me_text">My name is Muhammad Ariq Basyar. A student from University of Indonesia at Faculty of Computer Science</string>
     <string name="toast_image_saved">Saved to gallery</string>
+    <string name="english_language">English</string>
 </resources>
