@@ -17,11 +17,12 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="190dp"
+        android:layout_width="match_parent"
         android:layout_height="289dp"
         android:layout_margin="@dimen/margin_small"
         android:background="@drawable/card_bg"
-        android:onClick="@{() ->  recipeItemClick.onRecipeClicked(recipe)}">
+        android:onClick="@{() ->  recipeItemClick.onRecipeClicked(recipe)}"
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/item_toy_name"
@@ -43,7 +44,7 @@
             android:layout_width="150dp"
             android:layout_height="111dp"
             android:gravity="center_horizontal"
-            android:padding="10dp"
+            android:padding="5dp"
             android:text="@{BindingUtils.trimProcedure(recipe.procedure)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
