@@ -147,12 +147,11 @@ class DetailRecipeFragment: Fragment() {
         downloadAbleFrameLayout.isDrawingCacheEnabled = true
         downloadAbleFrameLayout.buildDrawingCache()
         val bitmap: Bitmap = downloadAbleFrameLayout.getDrawingCache(true)
-        val imageId = UUID.randomUUID()
         val imageName = binding.recipeName.text.toString()
-        val savedImageUri = saveBitmapToGallery(bitmap, "$imageName - $imageId")
+        saveBitmapToGallery(bitmap, imageName)
         Toast.makeText(
             context,
-            savedImageUri.toString(),
+            resources.getString(R.string.toast_image_saved),
             Toast.LENGTH_LONG
         ).show()
     }
