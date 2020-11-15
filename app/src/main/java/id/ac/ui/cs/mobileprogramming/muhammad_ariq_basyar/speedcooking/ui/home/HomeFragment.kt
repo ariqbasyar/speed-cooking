@@ -47,16 +47,8 @@ class HomeFragment : Fragment(), RecipeAdapter.RecipeClickListener {
             false
         )
 
-        //Set adapter, divider and default animator to the recycler view
         recipeAdapter = RecipeAdapter(this)
-        val dividerItemDecoration = DividerItemDecoration(
-            requireActivity(), LinearLayoutManager.VERTICAL
-        )
-        with(binding.recycler) {
-            addItemDecoration(dividerItemDecoration)
-            itemAnimator = DefaultItemAnimator()
-            adapter = recipeAdapter
-        }
+        binding.recycler.adapter = recipeAdapter
 
         return binding.root
     }
