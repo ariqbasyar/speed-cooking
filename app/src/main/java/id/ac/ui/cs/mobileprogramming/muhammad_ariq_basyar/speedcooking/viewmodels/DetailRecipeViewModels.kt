@@ -3,15 +3,15 @@ package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmode
 import android.net.Uri
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.duration.Duration
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.duration.DurationRepository
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.ingredient.Ingredient
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.ingredient.IngredientRepository
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.Recipe
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.RecipeRepository
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 
 class DetailRecipeViewModels @ViewModelInject internal constructor(
     private val recipeRepository: RecipeRepository,
@@ -20,7 +20,6 @@ class DetailRecipeViewModels @ViewModelInject internal constructor(
 ): ViewModel() {
 
     private var recipeId : Long = 0
-    private var imageUri = MutableLiveData<Uri>()
     fun recipe(): LiveData<Recipe> =
         recipeRepository.getRecipe(recipeId)
 
@@ -34,7 +33,10 @@ class DetailRecipeViewModels @ViewModelInject internal constructor(
         this.recipeId = recipeId
     }
 
-    fun setImageUri(imageUri: Uri) {
-        this.imageUri.postValue(imageUri)
+    fun saveDuration(elapsedTime: Long) {
+        viewModelScope.launch {
+            durationRepository.createDuration(recipeId, elapsedTime)
+            durationRepository.deleteDurationsExceptTheTopThree(recipeId)
+        }
     }
 }

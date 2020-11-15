@@ -15,6 +15,10 @@
         android:theme="@style/AppTheme"
         android:requestLegacyExternalStorage="true"
         android:configChanges="locale">
+        <service
+            android:name=".ui.stopwatch.StopWatchService"
+            android:enabled="true"
+            android:exported="true"></service>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

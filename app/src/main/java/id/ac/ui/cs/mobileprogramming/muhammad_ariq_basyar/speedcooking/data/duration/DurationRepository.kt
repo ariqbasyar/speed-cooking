@@ -13,6 +13,9 @@ class DurationRepository @Inject constructor(
         return durationDao.insertDuration(duration)
     }
 
+    suspend fun deleteDurationsExceptTheTopThree(recipeId: Long) =
+        durationDao.deleteDurationsExceptTheTopThree(recipeId)
+
     fun getDurationsFromRecipe(recipeId: Long) =
         durationDao.getDurationsFromRecipe(recipeId)
 }

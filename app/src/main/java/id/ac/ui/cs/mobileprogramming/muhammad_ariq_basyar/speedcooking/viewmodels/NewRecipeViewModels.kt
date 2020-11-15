@@ -8,9 +8,10 @@ import android.provider.MediaStore
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.ingredient.IngredientRepository
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.RecipeRepository
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -74,7 +75,7 @@ class NewRecipeViewModels @ViewModelInject internal constructor(
     }
 
     fun save() {
-        runBlocking {
+        viewModelScope.launch {
             val imageFileDescriptor: File? = imageUri.value?.let { saveToInternalStorage(it) }
             val imageAbsUri: Uri? = imageFileDescriptor?.let { file -> Uri.parse(file.absolutePath) }
             val newRecipeId: Long? = imageAbsUri?.let { imageUri ->

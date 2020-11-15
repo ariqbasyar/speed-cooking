@@ -2,9 +2,7 @@ package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.recip
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,14 +10,15 @@ import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.DetailRecipeFragmentBinding
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.ElapsedTime
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.StopWatchFragment
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModels
 import kotlinx.android.synthetic.main.detail_recipe_fragment.*
-import java.io.File
-import kotlin.math.abs
 
 
 @AndroidEntryPoint
@@ -27,7 +26,6 @@ class DetailRecipeFragment: Fragment() {
 
     private val detailRecipeViewModels: DetailRecipeViewModels by activityViewModels()
     private lateinit var mContext: Context
-
     private lateinit var binding : DetailRecipeFragmentBinding
 
     override fun onAttach(context: Context) {
@@ -47,6 +45,12 @@ class DetailRecipeFragment: Fragment() {
             false
         )
         binding.viewModel = detailRecipeViewModels
+        binding.addNewRecordButton.setOnClickListener {
+            fragmentManager!!.commit {
+                replace(R.id.recipe_container, StopWatchFragment())
+                addToBackStack(null)
+            }
+        }
         return binding.root
     }
 
@@ -75,7 +79,21 @@ class DetailRecipeFragment: Fragment() {
         }
 
         detailRecipeViewModels.durations().observe(viewLifecycleOwner) { durationList ->
-
+            durationList.forEachIndexed { index, duration ->
+                val mDuration = duration.recipeDuration
+                val parsedElapsedTime = ElapsedTime.parseToString(mDuration)
+                when(index) {
+                    0 -> {
+                        binding.bestRecordText.text = parsedElapsedTime
+                    }
+                    1 -> {
+                        binding.secondFastest.text = parsedElapsedTime
+                    }
+                    2 -> {
+                        binding.thirdFastest.text = parsedElapsedTime
+                    }
+                }
+            }
         }
     }
 
