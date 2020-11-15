@@ -1,12 +1,19 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.recipe
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.FrameLayout
+import android.widget.Toast
+import androidx.core.content.PermissionChecker
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -19,7 +26,9 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwa
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.StopWatchFragment
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModels
 import kotlinx.android.synthetic.main.detail_recipe_fragment.*
+import java.util.*
 
+const val WRITE_EXTERNAL_PERMISSION_CODE = 102
 
 @AndroidEntryPoint
 class DetailRecipeFragment: Fragment() {
@@ -27,6 +36,7 @@ class DetailRecipeFragment: Fragment() {
     private val detailRecipeViewModels: DetailRecipeViewModels by activityViewModels()
     private lateinit var mContext: Context
     private lateinit var binding : DetailRecipeFragmentBinding
+    private lateinit var downloadAbleFrameLayout: FrameLayout
 
     override fun onAttach(context: Context) {
         mContext = context
@@ -45,10 +55,27 @@ class DetailRecipeFragment: Fragment() {
             false
         )
         binding.viewModel = detailRecipeViewModels
+        downloadAbleFrameLayout = binding.downloadableLayout
         binding.addNewRecordButton.setOnClickListener {
             fragmentManager!!.commit {
                 replace(R.id.recipe_container, StopWatchFragment())
                 addToBackStack(null)
+            }
+        }
+
+        binding.downloadButton.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (PermissionChecker.checkSelfPermission(
+                        context!!,
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    ) == PermissionChecker.PERMISSION_DENIED) {
+                    val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    requestPermissions(permissions, WRITE_EXTERNAL_PERMISSION_CODE)
+                } else {
+                    saveLayoutToGallery()
+                }
+            } else {
+                saveLayoutToGallery()
             }
         }
         return binding.root
@@ -95,6 +122,49 @@ class DetailRecipeFragment: Fragment() {
                 }
             }
         }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode) {
+            WRITE_EXTERNAL_PERMISSION_CODE -> {
+                if (grantResults.isNotEmpty() &&
+                    grantResults[0] == PermissionChecker.PERMISSION_GRANTED
+                ) {
+                    saveLayoutToGallery()
+                } else {
+                    Toast.makeText(context, "Permission denied.", Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun saveLayoutToGallery() {
+        downloadAbleFrameLayout.isDrawingCacheEnabled = true
+        downloadAbleFrameLayout.buildDrawingCache()
+        val bitmap: Bitmap = downloadAbleFrameLayout.getDrawingCache(true)
+        val imageId = UUID.randomUUID()
+        val imageName = binding.recipeName.text.toString()
+        val savedImageUri = saveBitmapToGallery(bitmap, "$imageName - $imageId")
+        Toast.makeText(
+            context,
+            savedImageUri.toString(),
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    private fun saveBitmapToGallery(bitmap: Bitmap, imageName: String): Uri {
+        val savedImageUri = MediaStore.Images.Media.insertImage(
+            activity!!.contentResolver,
+            bitmap,
+            imageName,
+            "Image of $imageName"
+        )
+        return Uri.parse(savedImageUri)
     }
 
 }
