@@ -9,126 +9,131 @@
             type="id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.NewRecipeViewModels" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.recipe.NewRecipeActivity">
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="343dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/selected_image_view"
-                android:layout_width="match_parent"
-                android:layout_height="241dp"
-                app:srcCompat="@drawable/ic_menu_gallery"
-                android:contentDescription="@string/upload_image_content_desc" />
-
-            <Button
-                android:id="@+id/upload_picture_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/upload_picture_text" />
-        </LinearLayout>
-
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout3"
-            android:layout_width="338dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="190dp"
+                android:id="@+id/linearLayout"
+                android:layout_width="343dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/procedure_input">
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/ingredients_title_text"
+                <ImageView
+                    android:id="@+id/selected_image_view"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ingredients_text" />
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp">
-
-                    <LinearLayout
-                        android:id="@+id/add_ingredient_linear_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="190dp"
-                        android:orientation="vertical" />
-                </ScrollView>
+                    android:layout_height="241dp"
+                    app:srcCompat="@drawable/ic_menu_gallery"
+                    android:contentDescription="@string/upload_image_content_desc" />
 
                 <Button
-                    android:id="@+id/add_ingredient_button"
+                    android:id="@+id/upload_picture_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/add_more_ingredient_text" />
-
+                    android:text="@string/upload_picture_text" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/recipe_name"
-                android:layout_width="match_parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout3"
+                android:layout_width="338dp"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/recipe_name_text"
-                android:text="@={viewModel.name}"
-                android:inputType="textPersonName"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-            <EditText
-                android:id="@+id/procedure_input"
-                android:layout_width="match_parent"
-                android:layout_height="73dp"
-                android:ems="10"
-                android:hint="@string/description_procedures_text"
-                android:text="@={viewModel.procedure}"
-                android:inputType="textMultiLine"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recipe_name" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/procedure_input">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout4"
-            android:layout_width="341dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+                    <TextView
+                        android:id="@+id/ingredients_title_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ingredients_text" />
 
-            <Button
-                android:id="@+id/save_recipe_button"
-                android:layout_width="wrap_content"
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp">
+
+                        <LinearLayout
+                            android:id="@+id/add_ingredient_linear_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="190dp"
+                            android:orientation="vertical" />
+                    </ScrollView>
+
+                    <Button
+                        android:id="@+id/add_ingredient_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_more_ingredient_text" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/recipe_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/recipe_name_text"
+                    android:text="@={viewModel.name}"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/procedure_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="73dp"
+                    android:ems="10"
+                    android:hint="@string/description_procedures_text"
+                    android:text="@={viewModel.procedure}"
+                    android:inputType="textMultiLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/recipe_name" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
+                android:layout_width="341dp"
                 android:layout_height="wrap_content"
-                android:text="@string/save_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/save_recipe_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </layout>
