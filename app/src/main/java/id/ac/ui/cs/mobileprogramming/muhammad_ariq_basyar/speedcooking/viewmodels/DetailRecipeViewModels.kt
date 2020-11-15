@@ -1,6 +1,5 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels
 
-import android.net.Uri
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

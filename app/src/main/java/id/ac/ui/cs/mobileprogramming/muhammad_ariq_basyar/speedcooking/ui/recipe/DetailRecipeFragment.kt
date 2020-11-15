@@ -26,7 +26,6 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwa
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.StopWatchFragment
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModels
 import kotlinx.android.synthetic.main.detail_recipe_fragment.*
-import java.util.*
 
 const val WRITE_EXTERNAL_PERMISSION_CODE = 102
 
