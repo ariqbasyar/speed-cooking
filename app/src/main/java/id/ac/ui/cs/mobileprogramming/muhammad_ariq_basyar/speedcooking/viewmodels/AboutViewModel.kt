@@ -39,8 +39,9 @@ class AboutViewModel(application: Application): AndroidViewModel(application) {
             override fun onFailure(call: Call, e: IOException) {
                 Log.d(
                     AboutViewModel::class.java.simpleName,
-                    "onResponse: Failed to execute request"
+                    "onFailure: Failed to execute request"
                 )
+                aboutMe.postValue("Failed to get data")
             }
 
             override fun onResponse(call: Call, response: Response) {
