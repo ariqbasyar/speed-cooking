@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.home
+package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData

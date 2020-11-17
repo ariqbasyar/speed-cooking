@@ -16,6 +16,7 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.ingr
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.Recipe
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.FragmentHomeBinding
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.recipe.DetailRecipeActivity
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 

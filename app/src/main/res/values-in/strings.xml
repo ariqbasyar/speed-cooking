@@ -5,9 +5,9 @@
     <string name="navigation_drawer_close">tutup panel navigas</string>
     <string name="nav_header_desc">Tajuk navigasi</string>
     <string name="action_settings">Pengaturan</string>
+    <string name="language_title">Bahasa</string>
     <string name="menu_home">Rumah</string>
     <string name="menu_about">Tentang</string>
-    <string name="language_title">Bahasa</string>
     <string name="upload_picture_text">Masukkan Gambar</string>
     <string name="ingredients_text">Bahan Baku:</string>
     <string name="add_more_ingredient_text">Tambah Bahan Baku</string>

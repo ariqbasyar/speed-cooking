@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.FragmentAboutBinding
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.AboutViewModel
 
 @AndroidEntryPoint
 class AboutFragment : Fragment() {

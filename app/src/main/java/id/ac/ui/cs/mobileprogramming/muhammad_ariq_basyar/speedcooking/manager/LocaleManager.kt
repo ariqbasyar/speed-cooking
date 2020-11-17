@@ -15,7 +15,11 @@ const val LANGUAGE_ENGLISH = "en"
 const val LANGUAGE_KEY = "lang"
 
 class LocaleManager(context: Context?) {
+
     private val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    private val language: String?
+        get() = prefs.getString(LANGUAGE_KEY, LANGUAGE_ENGLISH)
+
     fun setLocale(c: Context): Context {
         return updateResources(c, language)
     }
@@ -24,9 +28,6 @@ class LocaleManager(context: Context?) {
         persistLanguage(language)
         return updateResources(c, language)
     }
-
-    private val language: String?
-        get() = prefs.getString(LANGUAGE_KEY, LANGUAGE_ENGLISH)
 
     @SuppressLint("ApplySharedPref")
     private fun persistLanguage(language: String) {

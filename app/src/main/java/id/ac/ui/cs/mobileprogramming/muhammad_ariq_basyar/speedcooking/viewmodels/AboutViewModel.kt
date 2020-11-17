@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.about
+package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels
 
 import android.app.Application
 import android.os.Build
@@ -29,7 +29,7 @@ class AboutViewModel(application: Application): AndroidViewModel(application) {
             getApplication<Application>().resources.configuration.locale
         }
         val lang = when(currentLocale.displayLanguage) {
-            "Inggris" -> "in"
+            "Inggris", "Indonesia" -> "in"
             else -> "en"
         }
         val request = Request
