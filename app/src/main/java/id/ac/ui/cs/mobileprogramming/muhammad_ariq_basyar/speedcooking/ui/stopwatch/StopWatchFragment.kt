@@ -14,12 +14,12 @@ import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.StopWatchFragmentBinding
-import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModels
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModel
 
 @AndroidEntryPoint
 class StopWatchFragment: Fragment() {
 
-    private val detailRecipeViewModels: DetailRecipeViewModels by activityViewModels()
+    private val detailRecipeViewModel: DetailRecipeViewModel by activityViewModels()
     private lateinit var binding: StopWatchFragmentBinding
     private lateinit var elapsedTime: ElapsedTime
 
@@ -50,7 +50,7 @@ class StopWatchFragment: Fragment() {
             binding.elapsedTimeText.text = getString(R.string.init_stopwatch)
         }
         binding.saveButton.setOnClickListener {
-            detailRecipeViewModels.saveDuration(elapsedTime.getElapsedTime())
+            detailRecipeViewModel.saveDuration(elapsedTime.getElapsedTime())
             fragmentManager!!.popBackStack()
         }
     }

@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.MainActivity
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.NewRecipeFragmentBinding
-import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.NewRecipeViewModels
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.NewRecipeViewModel
 import kotlinx.android.synthetic.main.new_recipe_fragment.*
 
 
@@ -32,8 +32,8 @@ class NewRecipeFragment: Fragment() {
 
     private lateinit var binding: NewRecipeFragmentBinding
     private lateinit var ingredientList: LinearLayout
-    private val newRecipeViewModels: NewRecipeViewModels by lazy {
-        ViewModelProviders.of(this).get(NewRecipeViewModels::class.java)
+    private val newRecipeViewModel: NewRecipeViewModel by lazy {
+        ViewModelProviders.of(this).get(NewRecipeViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -54,7 +54,7 @@ class NewRecipeFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        binding.viewModel = newRecipeViewModels
+        binding.viewModel = newRecipeViewModel
 
         binding.saveRecipeButton.setOnClickListener {
             save()
@@ -79,7 +79,7 @@ class NewRecipeFragment: Fragment() {
             }
         }
 
-        newRecipeViewModels.imageUri.observe(viewLifecycleOwner) { imageUri ->
+        newRecipeViewModel.imageUri.observe(viewLifecycleOwner) { imageUri ->
             selected_image_view.setImageURI(imageUri)
         }
     }
@@ -115,7 +115,7 @@ class NewRecipeFragment: Fragment() {
             when (requestCode) {
                 PICK_IMAGE -> {
                     val mData = data?.data
-                    newRecipeViewModels.setImageUri(mData)
+                    newRecipeViewModel.setImageUri(mData)
                 }
             }
         }
@@ -131,13 +131,13 @@ class NewRecipeFragment: Fragment() {
     private fun saveIngredientsEditText() {
         ingredientList.children.forEach {
             val editText: EditText = it.findViewById(R.id.ingredient_edit_text)
-            newRecipeViewModels.addIngredient(editText.text.toString())
+            newRecipeViewModel.addIngredient(editText.text.toString())
         }
     }
 
     private fun save() {
         saveIngredientsEditText()
-        newRecipeViewModels.save()
+        newRecipeViewModel.save()
         val backToMain = Intent(context, MainActivity::class.java)
         startActivity(backToMain)
     }

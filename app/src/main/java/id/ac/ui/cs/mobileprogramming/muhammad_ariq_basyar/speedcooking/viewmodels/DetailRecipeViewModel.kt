@@ -12,7 +12,7 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.reci
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.RecipeRepository
 import kotlinx.coroutines.launch
 
-class DetailRecipeViewModels @ViewModelInject internal constructor(
+class DetailRecipeViewModel @ViewModelInject internal constructor(
     private val recipeRepository: RecipeRepository,
     private val ingredientRepository: IngredientRepository,
     private val durationRepository: DurationRepository

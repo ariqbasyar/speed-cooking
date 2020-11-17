@@ -19,7 +19,7 @@ import java.io.OutputStream
 import java.util.*
 import kotlin.collections.ArrayList
 
-class NewRecipeViewModels @ViewModelInject internal constructor(
+class NewRecipeViewModel @ViewModelInject internal constructor(
     private val recipeRepository: RecipeRepository,
     private val ingredientRepository: IngredientRepository,
     application: Application

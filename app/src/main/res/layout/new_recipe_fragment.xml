@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.NewRecipeViewModels" />
+            type="id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.NewRecipeViewModel" />
     </data>
 
     <ScrollView

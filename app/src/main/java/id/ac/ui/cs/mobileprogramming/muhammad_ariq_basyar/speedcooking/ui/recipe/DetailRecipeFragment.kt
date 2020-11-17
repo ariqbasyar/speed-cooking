@@ -24,7 +24,7 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.DetailRecipeFragmentBinding
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.ElapsedTime
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.StopWatchFragment
-import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModels
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModel
 import kotlinx.android.synthetic.main.detail_recipe_fragment.*
 
 const val WRITE_EXTERNAL_PERMISSION_CODE = 102
@@ -32,7 +32,7 @@ const val WRITE_EXTERNAL_PERMISSION_CODE = 102
 @AndroidEntryPoint
 class DetailRecipeFragment: Fragment() {
 
-    private val detailRecipeViewModels: DetailRecipeViewModels by activityViewModels()
+    private val detailRecipeViewModel: DetailRecipeViewModel by activityViewModels()
     private lateinit var mContext: Context
     private lateinit var binding : DetailRecipeFragmentBinding
     private lateinit var downloadAbleFrameLayout: FrameLayout
@@ -82,7 +82,7 @@ class DetailRecipeFragment: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        detailRecipeViewModels.recipe().observe(viewLifecycleOwner) { recipe ->
+        detailRecipeViewModel.recipe().observe(viewLifecycleOwner) { recipe ->
             recipe_name.text = recipe.name
             recipe_procedure.text = recipe.procedure
             Glide.with(this)
@@ -91,7 +91,7 @@ class DetailRecipeFragment: Fragment() {
                 .into(selected_image_view)
         }
 
-        detailRecipeViewModels.ingredients().observe(viewLifecycleOwner) { ingredientList ->
+        detailRecipeViewModel.ingredients().observe(viewLifecycleOwner) { ingredientList ->
             val ingredientsArrayAdapter = ArrayAdapter(
                 context!!,
                 android.R.layout.simple_list_item_1,
@@ -103,7 +103,7 @@ class DetailRecipeFragment: Fragment() {
             ingredients_list_view.adapter = ingredientsArrayAdapter
         }
 
-        detailRecipeViewModels.durations().observe(viewLifecycleOwner) { durationList ->
+        detailRecipeViewModel.durations().observe(viewLifecycleOwner) { durationList ->
             durationList.forEachIndexed { index, duration ->
                 val mDuration = duration.recipeDuration
                 val parsedElapsedTime = ElapsedTime.parseToString(mDuration)
