@@ -26,4 +26,7 @@
     <string name="about_me_title">About Me</string>
     <string name="toast_image_saved">Saved to gallery</string>
     <string name="english_language">English</string>
+    <string name="back_text">Back</string>
+    <string name="share_text">Share</string>
+    <string name="save_to_gallery_text">Save To Gallery</string>
 </resources>

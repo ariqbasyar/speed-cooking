@@ -19,6 +19,14 @@ class DetailRecipeViewModel @ViewModelInject internal constructor(
 ): ViewModel() {
 
     private var recipeId : Long = 0
+    private lateinit var recipeName: String
+
+    fun setRecipeName(name: String) {
+        recipeName = name
+    }
+
+    fun getRecipeName(): String = recipeName
+
     fun recipe(): LiveData<Recipe> =
         recipeRepository.getRecipe(recipeId)
 

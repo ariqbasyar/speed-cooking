@@ -26,4 +26,7 @@
     <string name="about_me_title">Tentang Saya</string>
     <string name="toast_image_saved">Tersimpan ke gallery</string>
     <string name="english_language">Inggris</string>
+    <string name="back_text">Kembali</string>
+    <string name="share_text">Bagikan</string>
+    <string name="save_to_gallery_text">Simpan ke gallery</string>
 </resources>

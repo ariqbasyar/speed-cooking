@@ -1,19 +1,13 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.recipe
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.FrameLayout
-import android.widget.Toast
-import androidx.core.content.PermissionChecker
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -24,8 +18,10 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.DetailRecipeFragmentBinding
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.ElapsedTime
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.StopWatchFragment
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.utils.ImageUtils.Companion.saveToInternalStorage
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModel
 import kotlinx.android.synthetic.main.detail_recipe_fragment.*
+import java.io.File
 
 const val WRITE_EXTERNAL_PERMISSION_CODE = 102
 
@@ -33,14 +29,8 @@ const val WRITE_EXTERNAL_PERMISSION_CODE = 102
 class DetailRecipeFragment: Fragment() {
 
     private val detailRecipeViewModel: DetailRecipeViewModel by activityViewModels()
-    private lateinit var mContext: Context
     private lateinit var binding : DetailRecipeFragmentBinding
     private lateinit var downloadAbleFrameLayout: FrameLayout
-
-    override fun onAttach(context: Context) {
-        mContext = context
-        super.onAttach(context)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,20 +51,12 @@ class DetailRecipeFragment: Fragment() {
             }
         }
 
-        binding.downloadButton.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (PermissionChecker.checkSelfPermission(
-                        context!!,
-                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    ) == PermissionChecker.PERMISSION_DENIED) {
-                    val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    requestPermissions(permissions, WRITE_EXTERNAL_PERMISSION_CODE)
-                } else {
-                    saveLayoutToGallery()
-                }
-            } else {
-                saveLayoutToGallery()
+        binding.shareButton.setOnClickListener {
+            fragmentManager!!.commit {
+                add(R.id.recipe_container, PopUpFragment(), "popup")
+                addToBackStack("popup")
             }
+            saveLayoutToInternal()
         }
         return binding.root
     }
@@ -122,46 +104,13 @@ class DetailRecipeFragment: Fragment() {
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode) {
-            WRITE_EXTERNAL_PERMISSION_CODE -> {
-                if (grantResults.isNotEmpty() &&
-                    grantResults[0] == PermissionChecker.PERMISSION_GRANTED
-                ) {
-                    saveLayoutToGallery()
-                } else {
-                    Toast.makeText(context, "Permission denied.", Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-    }
-
-    private fun saveLayoutToGallery() {
+    private fun saveLayoutToInternal() {
         downloadAbleFrameLayout.isDrawingCacheEnabled = true
         downloadAbleFrameLayout.buildDrawingCache()
         val bitmap: Bitmap = downloadAbleFrameLayout.getDrawingCache(true)
-        val imageName = binding.recipeName.text.toString()
-        saveBitmapToGallery(bitmap, imageName)
-        Toast.makeText(
-            context,
-            resources.getString(R.string.toast_image_saved),
-            Toast.LENGTH_LONG
-        ).show()
+        val filePath = File(context?.cacheDir, "images")
+        filePath.mkdirs()
+        val file = saveToInternalStorage(bitmap, filePath, "layout.jpg")
+        detailRecipeViewModel.setRecipeName(binding.recipeName.text.toString())
     }
-
-    private fun saveBitmapToGallery(bitmap: Bitmap, imageName: String): Uri {
-        val savedImageUri = MediaStore.Images.Media.insertImage(
-            activity!!.contentResolver,
-            bitmap,
-            imageName,
-            "Image of $imageName"
-        )
-        return Uri.parse(savedImageUri)
-    }
-
 }

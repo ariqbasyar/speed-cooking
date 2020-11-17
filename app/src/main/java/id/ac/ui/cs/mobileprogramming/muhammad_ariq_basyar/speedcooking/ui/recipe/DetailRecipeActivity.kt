@@ -39,4 +39,21 @@ class DetailRecipeActivity: AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    override fun onBackPressed() {
+        val index = supportFragmentManager.backStackEntryCount - 1
+        if (index < 0) {
+            super.onBackPressed()
+            return
+        }
+        val backEntry = supportFragmentManager.getBackStackEntryAt(index)
+        if (backEntry.name == "popup") {
+            supportFragmentManager.commit {
+                replace(R.id.recipe_container, DetailRecipeFragment())
+            }
+            supportFragmentManager.popBackStack()
+            return
+        }
+        super.onBackPressed()
+    }
 }
