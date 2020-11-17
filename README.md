@@ -1,4 +1,4 @@
-# speed-cooking
+# Speed Cooking
 
 Nama:   Muhammad Ariq Basyar
 
