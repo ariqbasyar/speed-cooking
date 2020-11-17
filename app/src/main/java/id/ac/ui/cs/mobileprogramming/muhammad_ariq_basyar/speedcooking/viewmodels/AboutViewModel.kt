@@ -28,10 +28,7 @@ class AboutViewModel(application: Application): AndroidViewModel(application) {
         } else {
             getApplication<Application>().resources.configuration.locale
         }
-        val lang = when(currentLocale.displayLanguage) {
-            "Inggris", "Indonesia" -> "in"
-            else -> "en"
-        }
+        val lang = currentLocale.language
         val request = Request
             .Builder()
             .url("$API_URL?lang=$lang")

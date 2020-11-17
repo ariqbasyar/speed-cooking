@@ -8,7 +8,6 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProviders
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
-import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.manager.LocaleManager
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.home.RECIPE_KEY
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModels
 
@@ -30,11 +29,6 @@ class DetailRecipeActivity: AppCompatActivity() {
             replace(R.id.recipe_container, DetailRecipeFragment())
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    override fun attachBaseContext(base: Context?) {
-        val localeManager = LocaleManager(base)
-        super.attachBaseContext(base?.let { localeManager.setLocale(it) })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
