@@ -29,4 +29,5 @@
     <string name="back_text">Kembali</string>
     <string name="share_text">Bagikan</string>
     <string name="save_to_gallery_text">Simpan ke gallery</string>
+    <string name="choose_an_app">Pilih aplikasi</string>
 </resources>

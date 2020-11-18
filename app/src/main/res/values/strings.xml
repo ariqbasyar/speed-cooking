@@ -33,4 +33,5 @@
     <string name="back_text">Back</string>
     <string name="share_text">Share</string>
     <string name="save_to_gallery_text">Save To Gallery</string>
+    <string name="choose_an_app">Choose an app</string>
 </resources>
