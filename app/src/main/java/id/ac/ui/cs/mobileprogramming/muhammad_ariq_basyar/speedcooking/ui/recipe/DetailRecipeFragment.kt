@@ -110,7 +110,7 @@ class DetailRecipeFragment: Fragment() {
         val bitmap: Bitmap = downloadAbleFrameLayout.getDrawingCache(true)
         val filePath = File(context?.cacheDir, "images")
         filePath.mkdirs()
-        val file = saveToInternalStorage(bitmap, filePath, "layout.jpg")
+        saveToInternalStorage(bitmap, filePath, "layout.jpg")
         detailRecipeViewModel.setRecipeName(binding.recipeName.text.toString())
     }
 }

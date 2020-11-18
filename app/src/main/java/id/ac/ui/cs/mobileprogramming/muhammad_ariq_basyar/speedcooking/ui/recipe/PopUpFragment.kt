@@ -89,10 +89,15 @@ class PopUpFragment : Fragment() {
             if (contentUri != null) {
                 val shareIntent = Intent()
                 shareIntent.action = Intent.ACTION_SEND
-                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // temp permission for receiving app to read this file
-                shareIntent.setDataAndType(contentUri, context!!.contentResolver.getType(contentUri))
+                shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                shareIntent.setDataAndType(
+                    contentUri,
+                    context!!.contentResolver.getType(contentUri)
+                )
                 shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri)
-                startActivity(Intent.createChooser(shareIntent, resources.getString(R.string.choose_an_app)))
+                startActivity(
+                    Intent.createChooser(shareIntent, resources.getString(R.string.choose_an_app))
+                )
             }
         } catch (e: IOException) {
             e.printStackTrace()

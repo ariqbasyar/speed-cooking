@@ -16,7 +16,6 @@ class ImageUtils {
             contentResolver: ContentResolver
         ): Bitmap? {
             var bitmap: Bitmap? = null
-
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(
                     contentResolver,
@@ -25,7 +24,6 @@ class ImageUtils {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
             return bitmap
         }
 
@@ -54,8 +52,8 @@ class ImageUtils {
 
         fun saveToInternalStorage(mBitmap: Bitmap, filePath: File, fileName: String): File? {
             val file = File(filePath, fileName)
+            file.mkdirs()
             return goSaveFile(mBitmap, file)
-
         }
 
         fun saveToInternalStorage(mBitmap: Bitmap, filePath: File): File? {
@@ -65,7 +63,6 @@ class ImageUtils {
         private fun goSaveFile(mBitmap: Bitmap, file: File): File? {
             try {
                 val stream: OutputStream = FileOutputStream(file)
-
                 mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
                 stream.flush()
                 stream.close()
