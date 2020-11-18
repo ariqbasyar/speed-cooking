@@ -16,21 +16,22 @@
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="343dp"
-            android:layout_height="wrap_content"
+            android:layout_width="692dp"
+            android:layout_height="586dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
 
             <ImageView
                 android:id="@+id/selected_image_view"
                 android:layout_width="match_parent"
-                android:layout_height="241dp"
-                app:srcCompat="@drawable/ic_menu_gallery"
-                android:contentDescription="@string/upload_image_content_desc" />
+                android:layout_height="534dp"
+                android:contentDescription="@string/upload_image_content_desc"
+                app:srcCompat="@drawable/ic_menu_gallery" />
 
             <Button
                 android:id="@+id/upload_picture_button"
@@ -41,8 +42,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
-            android:layout_width="338dp"
-            android:layout_height="wrap_content"
+            android:layout_width="704dp"
+            android:layout_height="302dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -89,8 +90,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/recipe_name_text"
-                android:text="@={viewModel.name}"
                 android:inputType="textPersonName"
+                android:text="@={viewModel.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -101,8 +102,8 @@
                 android:layout_height="73dp"
                 android:ems="10"
                 android:hint="@string/description_procedures_text"
-                android:text="@={viewModel.procedure}"
                 android:inputType="textMultiLine"
+                android:text="@={viewModel.procedure}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recipe_name" />
@@ -110,8 +111,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
-            android:layout_width="341dp"
-            android:layout_height="wrap_content"
+            android:layout_width="696dp"
+            android:layout_height="142dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
