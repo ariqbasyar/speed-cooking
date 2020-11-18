@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="recipe"
+            type="id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.data.recipe.Recipe"/>
+
+        <variable
+            name="recipeItemClick"
+            type="id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.adapters.RecipeAdapter.RecipeClickListener"/>
+        
+        <import type="id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.utils.BindingUtils"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="289dp"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@drawable/card_bg"
+        android:onClick="@{() ->  recipeItemClick.onRecipeClicked(recipe)}"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/item_toy_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@{recipe.name}"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@+id/item_categories"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preview_image"
+            tools:text="Teddy Bear" />
+
+        <TextView
+            android:id="@+id/item_categories"
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:text="@{BindingUtils.trimProcedure(recipe.procedure)}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_toy_name"
+            tools:text="Plush" />
+
+        <ImageView
+            android:id="@+id/preview_image"
+            android:layout_width="160dp"
+            android:layout_height="118dp"
+            android:contentDescription="@string/food_preview"
+            android:padding="@dimen/padding_small"
+            app:imageUri="@{recipe.imageUri}"
+            app:layout_constraintBottom_toTopOf="@+id/item_toy_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/ic_menu_gallery" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
