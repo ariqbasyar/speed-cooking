@@ -51,8 +51,8 @@ class ImageUtils {
         }
 
         fun saveToInternalStorage(mBitmap: Bitmap, filePath: File, fileName: String): File? {
+            filePath.mkdirs()
             val file = File(filePath, fileName)
-            file.mkdirs()
             return goSaveFile(mBitmap, file)
         }
 

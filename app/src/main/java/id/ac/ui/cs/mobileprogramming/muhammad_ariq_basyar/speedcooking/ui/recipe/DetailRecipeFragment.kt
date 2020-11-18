@@ -81,7 +81,6 @@ class DetailRecipeFragment: Fragment() {
                     ingredient.recipeIngredient
                 }
             )
-
             ingredients_list_view.adapter = ingredientsArrayAdapter
         }
 

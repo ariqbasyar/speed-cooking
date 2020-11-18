@@ -48,12 +48,6 @@ class NewRecipeFragment: Fragment() {
             false
         )
         ingredientList = binding.addIngredientLinearLayout
-        return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
         binding.viewModel = newRecipeViewModel
 
         binding.saveRecipeButton.setOnClickListener {
@@ -78,10 +72,11 @@ class NewRecipeFragment: Fragment() {
                 pickImage()
             }
         }
-
         newRecipeViewModel.imageUri.observe(viewLifecycleOwner) { imageUri ->
             selected_image_view.setImageURI(imageUri)
         }
+
+        return binding.root
     }
 
     private fun pickImage() {
