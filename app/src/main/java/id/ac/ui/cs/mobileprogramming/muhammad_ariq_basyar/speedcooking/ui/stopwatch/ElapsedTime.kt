@@ -2,7 +2,6 @@ package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopw
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.util.concurrent.TimeUnit
 
 class ElapsedTime() : Parcelable {
     private var startTime: Long = System.currentTimeMillis()
@@ -34,29 +33,15 @@ class ElapsedTime() : Parcelable {
         return 0
     }
 
+    private external fun parseToString(duration: Long): String
+
     companion object CREATOR : Parcelable.Creator<ElapsedTime> {
+        init {
+            System.loadLibrary("converter-lib")
+        }
+
         fun parseToString(elapsedTime: Long): String {
-            val hours = String.format("%02d", getHours(elapsedTime))
-            val minutes = String.format("%02d", getMinutes(elapsedTime))
-            val seconds = String.format("%02d", getSeconds(elapsedTime))
-            val milliseconds = String.format("%03d", getMilliseconds(elapsedTime))
-            return "$hours:$minutes:$seconds $milliseconds"
-        }
-
-        private fun getHours(elapsedTime: Long): Long {
-            return TimeUnit.MILLISECONDS.toHours(elapsedTime) % 100
-        }
-
-        private fun getMinutes(elapsedTime: Long): Long {
-            return TimeUnit.MILLISECONDS.toMinutes(elapsedTime) % 60
-        }
-
-        private fun getSeconds(elapsedTime: Long): Long {
-            return TimeUnit.MILLISECONDS.toSeconds(elapsedTime) % 60
-        }
-
-        private fun getMilliseconds(elapsedTime: Long): Long{
-            return TimeUnit.MILLISECONDS.toMillis(elapsedTime) % 1000
+            return parseToString(elapsedTime)
         }
 
         override fun createFromParcel(parcel: Parcel): ElapsedTime {

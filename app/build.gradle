@@ -33,6 +33,15 @@ android {
         jvmTarget = '1.8'
     }
 
+    ndkVersion '21.0.6113669'
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
+
     dataBinding {
         enabled = true
     }
