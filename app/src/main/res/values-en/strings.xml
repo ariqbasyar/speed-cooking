@@ -33,4 +33,6 @@
     <string name="reason_write_permission">we ask for permission to access your storage so you can save your cooking moments</string>
     <string name="only_wifi">this about page can only be used using wifi</string>
     <string name="have_network_connection_q">do you have any network connection?</string>
+    <string name="notif_stopwatch_title">Ah, too bad</string>
+    <string name="notif_stopwatch_content">looks like you failed to beat your best record</string>
 </resources>

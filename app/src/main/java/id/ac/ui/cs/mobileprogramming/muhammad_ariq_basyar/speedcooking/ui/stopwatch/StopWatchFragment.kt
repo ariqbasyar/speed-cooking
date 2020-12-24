@@ -16,12 +16,16 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.StopWatchFragmentBinding
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModel
 
+const val CHANNEL_ID = "stopwatch_notification_id"
+const val NOTIFICATION_ID = 420
+
 @AndroidEntryPoint
 class StopWatchFragment: Fragment() {
 
     private val detailRecipeViewModel: DetailRecipeViewModel by activityViewModels()
     private lateinit var binding: StopWatchFragmentBinding
     private lateinit var elapsedTime: ElapsedTime
+    private lateinit var stopWatchServiceIntent: Intent
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,14 +43,21 @@ class StopWatchFragment: Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        stopWatchServiceIntent = Intent(context, StopWatchService::class.java)
+        detailRecipeViewModel.durations().observe(viewLifecycleOwner) {
+            val bestDuration  = it.firstOrNull()
+            if (bestDuration != null) {
+                StopWatchService.bestDuration = bestDuration.recipeDuration
+            }
+        }
         binding.startButton.setOnClickListener {
-            activity?.startService(Intent(context, StopWatchService::class.java))
+            activity?.startService(stopWatchServiceIntent)
         }
         binding.pauseButton.setOnClickListener {
-            activity?.stopService(Intent(context, StopWatchService::class.java))
+            activity?.stopService(stopWatchServiceIntent)
         }
         binding.resetButton.setOnClickListener {
-            activity?.stopService(Intent(context, StopWatchService::class.java))
+            activity?.stopService(stopWatchServiceIntent)
             binding.elapsedTimeText.text = getString(R.string.init_stopwatch)
         }
         binding.saveButton.setOnClickListener {
@@ -82,7 +93,7 @@ class StopWatchFragment: Fragment() {
     }
 
     override fun onDestroy() {
-        activity!!.stopService(Intent(context, StopWatchService::class.java))
+        activity!!.stopService(stopWatchServiceIntent)
         super.onDestroy()
     }
 }
