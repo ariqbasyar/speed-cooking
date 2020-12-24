@@ -6,7 +6,7 @@
     <string name="nav_header_desc">Tajuk navigasi</string>
     <string name="action_settings">Pengaturan</string>
     <string name="language_title">Bahasa</string>
-    <string name="menu_home">Rumah</string>
+    <string name="menu_home">Beranda</string>
     <string name="menu_about">Tentang</string>
     <string name="upload_picture_text">Masukkan Gambar</string>
     <string name="ingredients_text">Bahan Baku:</string>
@@ -30,4 +30,5 @@
     <string name="share_text">Bagikan</string>
     <string name="save_to_gallery_text">Simpan ke gallery</string>
     <string name="choose_an_app">Pilih aplikasi</string>
+    <string name="reason_write_permission">kami meminta izin untuk mengakses storage Anda agar Anda dapat menyimpan momen memasak Anda</string>
 </resources>

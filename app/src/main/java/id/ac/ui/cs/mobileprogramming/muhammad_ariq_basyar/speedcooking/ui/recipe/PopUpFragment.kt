@@ -18,6 +18,7 @@ import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.PopUpFragmentBinding
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.reason.ReasonWritePermissionActivity
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.utils.ImageUtils.Companion.getBitmapFromCacheDirs
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModel
 import java.io.File
@@ -119,6 +120,8 @@ class PopUpFragment : Fragment() {
                     saveLayoutToGallery()
                 } else {
                     Toast.makeText(context, "Permission denied.", Toast.LENGTH_LONG).show()
+                    val reasonIntent = Intent(context, ReasonWritePermissionActivity::class.java)
+                    startActivity(reasonIntent)
                 }
             }
         }

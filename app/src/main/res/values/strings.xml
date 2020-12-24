@@ -34,4 +34,5 @@
     <string name="share_text">Share</string>
     <string name="save_to_gallery_text">Save To Gallery</string>
     <string name="choose_an_app">Choose an app</string>
+    <string name="reason_write_permission">we ask for permission to access your storage so you can save your cooking moments</string>
 </resources>

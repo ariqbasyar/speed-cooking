@@ -48,6 +48,10 @@
             android:parentActivityName=".MainActivity">
 
         </activity>
+        <activity android:name=".ui.reason.ReasonWritePermissionActivity"
+            android:parentActivityName=".ui.recipe.DetailRecipeActivity">
+
+        </activity>
     </application>
 
 </manifest>
