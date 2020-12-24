@@ -31,4 +31,6 @@
     <string name="save_to_gallery_text">Save To Gallery</string>
     <string name="choose_an_app">Choose an app</string>
     <string name="reason_write_permission">we ask for permission to access your storage so you can save your cooking moments</string>
+    <string name="only_wifi">this about page can only be used using wifi</string>
+    <string name="have_network_connection_q">do you have any network connection?</string>
 </resources>

@@ -31,4 +31,6 @@
     <string name="save_to_gallery_text">Simpan ke gallery</string>
     <string name="choose_an_app">Pilih aplikasi</string>
     <string name="reason_write_permission">kami meminta izin untuk mengakses storage Anda agar Anda dapat menyimpan momen memasak Anda</string>
+    <string name="only_wifi">halaman ini hanya dapat digunakan menggunakan wifi</string>
+    <string name="have_network_connection_q">apakah kamu memiliki koneksi jaringan?</string>
 </resources>

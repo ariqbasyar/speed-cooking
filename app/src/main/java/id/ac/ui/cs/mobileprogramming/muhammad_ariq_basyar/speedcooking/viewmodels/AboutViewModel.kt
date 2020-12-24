@@ -1,10 +1,15 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels
 
 import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
@@ -17,12 +22,19 @@ class AboutViewModel(application: Application): AndroidViewModel(application) {
 
     val isFetched = MutableLiveData<Boolean>()
     val aboutMe = MutableLiveData<String>()
+    private val context = getApplication<Application>().applicationContext
+    private val resources = getApplication<Application>().resources
 
     init {
         fetchAboutMe()
     }
 
     private fun fetchAboutMe() {
+        val message = context?.let { messageConnection(it) }
+        if (message != "") {
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            return
+        }
         val currentLocale: Locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             getApplication<Application>().resources.configuration.locales.get(0)
         } else {
@@ -66,5 +78,34 @@ class AboutViewModel(application: Application): AndroidViewModel(application) {
                 aboutMe.postValue(data)
             }
         })
+    }
+
+    private fun messageConnection(context: Context): String {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            return resources.getString(if (capabilities != null) {
+                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    R.string.empty_string
+                } else {
+                    R.string.only_wifi
+                }
+            } else {
+                R.string.have_network_connection_q
+            })
+        } else {
+            val activeNetworkInfo = connectivityManager.activeNetworkInfo
+            return resources.getString(if (activeNetworkInfo != null) {
+                if (activeNetworkInfo.type == NetworkCapabilities.TRANSPORT_WIFI) {
+                    R.string.empty_string
+                } else {
+                    R.string.only_wifi
+                }
+            } else {
+                R.string.have_network_connection_q
+            })
+        }
     }
 }
