@@ -11,7 +11,7 @@ extern "C" {
     #define ll long long
 
     JNIEXPORT jstring JNICALL
-    Java_id_ac_ui_cs_mobileprogramming_muhammad_1ariq_1basyar_speedcooking_ui_stopwatch_ElapsedTime_parseToString(
+    Java_id_ac_ui_cs_mobileprogramming_muhammad_1ariq_1basyar_speedcooking_ui_stopwatch_parser_Parser_00024Companion_parseToString(
             JNIEnv* env,
             jobject obj,
             jlong duration) {

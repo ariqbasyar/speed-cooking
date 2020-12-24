@@ -16,8 +16,8 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.R
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.databinding.DetailRecipeFragmentBinding
-import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.ElapsedTime
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.StopWatchFragment
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.parser.Parser
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.utils.ImageUtils.Companion.saveToInternalStorage
 import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodels.DetailRecipeViewModel
 import kotlinx.android.synthetic.main.detail_recipe_fragment.*
@@ -31,6 +31,10 @@ class DetailRecipeFragment: Fragment() {
     private val detailRecipeViewModel: DetailRecipeViewModel by activityViewModels()
     private lateinit var binding : DetailRecipeFragmentBinding
     private lateinit var downloadAbleFrameLayout: FrameLayout
+
+    init {
+        System.loadLibrary("converter-lib")
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,7 +91,7 @@ class DetailRecipeFragment: Fragment() {
         detailRecipeViewModel.durations().observe(viewLifecycleOwner) { durationList ->
             durationList.forEachIndexed { index, duration ->
                 val mDuration = duration.recipeDuration
-                val parsedElapsedTime = ElapsedTime.parseToString(mDuration)
+                val parsedElapsedTime = Parser.parseToString(mDuration)
                 when(index) {
                     0 -> {
                         binding.bestRecordText.text = parsedElapsedTime

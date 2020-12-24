@@ -2,6 +2,7 @@ package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopw
 
 import android.os.Parcel
 import android.os.Parcelable
+import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.stopwatch.parser.Parser
 
 class ElapsedTime() : Parcelable {
     private var startTime: Long = System.currentTimeMillis()
@@ -33,15 +34,9 @@ class ElapsedTime() : Parcelable {
         return 0
     }
 
-    private external fun parseToString(duration: Long): String
-
     companion object CREATOR : Parcelable.Creator<ElapsedTime> {
-        init {
-            System.loadLibrary("converter-lib")
-        }
-
         fun parseToString(elapsedTime: Long): String {
-            return parseToString(elapsedTime)
+            return Parser.parseToString(elapsedTime)
         }
 
         override fun createFromParcel(parcel: Parcel): ElapsedTime {
