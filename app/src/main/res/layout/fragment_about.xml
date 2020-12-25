@@ -46,5 +46,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.about.OpenGLView
+            android:id="@+id/openGLView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/about_title" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

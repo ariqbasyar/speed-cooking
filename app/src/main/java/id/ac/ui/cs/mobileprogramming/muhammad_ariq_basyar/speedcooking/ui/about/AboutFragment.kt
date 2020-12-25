@@ -1,6 +1,7 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.about
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,8 @@ import id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.viewmodel
 
 @AndroidEntryPoint
 class AboutFragment : Fragment() {
+
+    private lateinit var openGLView: OpenGLView
     private lateinit var binding: FragmentAboutBinding
     private val aboutViewModel: AboutViewModel by lazy {
         ViewModelProviders.of(this).get(AboutViewModel::class.java)
@@ -29,6 +32,9 @@ class AboutFragment : Fragment() {
             container,
             false
         )
+        Log.i("ASDASD", "onCreateView: $view")
+//        openGLView = view?.findViewById(R.id.openGLView)!!
+        openGLView = binding.openGLView!!
         return binding.root
     }
 
@@ -36,7 +42,8 @@ class AboutFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         aboutViewModel.isFetched.observe(viewLifecycleOwner) { isFetched ->
             binding.progressBar.visibility = booleanToViewVisibility(isFetched)
-            binding.textAbout.visibility = booleanToViewVisibility(!isFetched)
+//            binding.textAbout.visibility = booleanToViewVisibility(!isFetched)
+            binding.openGLView!!.visibility = booleanToViewVisibility(!isFetched)
         }
         aboutViewModel.aboutMe.observe(viewLifecycleOwner) { aboutMe ->
             binding.textAbout.text = aboutMe
