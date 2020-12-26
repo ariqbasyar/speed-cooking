@@ -32,8 +32,6 @@ class AboutFragment : Fragment() {
             container,
             false
         )
-        Log.i("ASDASD", "onCreateView: $view")
-//        openGLView = view?.findViewById(R.id.openGLView)!!
         openGLView = binding.openGLView!!
         return binding.root
     }
@@ -46,7 +44,7 @@ class AboutFragment : Fragment() {
             binding.openGLView!!.visibility = booleanToViewVisibility(!isFetched)
         }
         aboutViewModel.aboutMe.observe(viewLifecycleOwner) { aboutMe ->
-            binding.textAbout.text = aboutMe
+//            binding.textAbout.text = aboutMe
         }
     }
 
