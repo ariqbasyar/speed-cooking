@@ -50,14 +50,14 @@ class DetailRecipeFragment: Fragment() {
         )
         downloadAbleFrameLayout = binding.downloadableLayout
         binding.addNewRecordButton.setOnClickListener {
-            fragmentManager!!.commit {
+            requireFragmentManager().commit {
                 replace(R.id.recipe_container, StopWatchFragment())
                 addToBackStack(null)
             }
         }
 
         binding.shareButton.setOnClickListener {
-            fragmentManager!!.commit {
+            requireFragmentManager().commit {
                 add(R.id.recipe_container, PopUpFragment(), "popup")
                 addToBackStack("popup")
             }
@@ -80,7 +80,7 @@ class DetailRecipeFragment: Fragment() {
 
         detailRecipeViewModel.ingredients().observe(viewLifecycleOwner) { ingredientList ->
             val ingredientsArrayAdapter = ArrayAdapter(
-                context!!,
+                requireContext(),
                 android.R.layout.simple_list_item_1,
                 ingredientList.map { ingredient ->
                     ingredient.recipeIngredient

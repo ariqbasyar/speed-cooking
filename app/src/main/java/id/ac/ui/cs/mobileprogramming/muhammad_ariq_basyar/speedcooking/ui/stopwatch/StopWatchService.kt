@@ -38,7 +38,7 @@ class StopWatchService : Service() {
     @ExperimentalTime
     override fun onCreate() {
         super.onCreate()
-        createNotificationChannel();
+        createNotificationChannel()
         elapsedTime = ElapsedTime()
         stopwatchServiceHandler.postDelayed(updater, 0)
     }
@@ -46,7 +46,7 @@ class StopWatchService : Service() {
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Speedrun Reminder"
-            val desc = "Reminder for ongoing speedccoking"
+            val desc = "Reminder for ongoing speedcooking"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
                 description = desc

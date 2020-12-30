@@ -1,19 +1,17 @@
 package id.ac.ui.cs.mobileprogramming.muhammad_ariq_basyar.speedcooking.ui.about
 
-import android.content.Context
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView
-import android.util.Log
+import android.os.SystemClock
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
+import kotlin.math.cos
+import kotlin.math.sin
 
-class OpenGLRenderer(context: Context): GLSurfaceView.Renderer {
+class OpenGLRenderer : GLSurfaceView.Renderer {
 
-    private var context: Context = context
-    private lateinit var obj: Obj
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
-        obj = Obj(context)
         GLES20.glClearColor(1f, 1f, 0f, 1f)
         GLES20.glEnable(GLES20.GL_BLEND)
         GLES20.glBlendFunc(GLES20.GL_ONE, GLES20.GL_ONE_MINUS_SRC_ALPHA)
@@ -25,7 +23,10 @@ class OpenGLRenderer(context: Context): GLSurfaceView.Renderer {
 
     override fun onDrawFrame(gl: GL10?) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT)
-        GLES20.glClearColor(1f, 1f, 0f, 1f)
-        obj.draw()
+        val time = SystemClock.uptimeMillis() % 2000L / 400L
+        val red = sin(time.toFloat())*0.5f + 0.5f
+        val green = cos(time.toFloat())*0.5f + 0.5f
+        val blue = 0.0f
+        GLES20.glClearColor(red, green, blue, 1f)
     }
 }

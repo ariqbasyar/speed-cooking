@@ -32,19 +32,18 @@ class AboutFragment : Fragment() {
             container,
             false
         )
-        openGLView = binding.openGLView!!
+        openGLView = binding.openGLView
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         aboutViewModel.isFetched.observe(viewLifecycleOwner) { isFetched ->
-            binding.progressBar.visibility = booleanToViewVisibility(isFetched)
-//            binding.textAbout.visibility = booleanToViewVisibility(!isFetched)
-            binding.openGLView!!.visibility = booleanToViewVisibility(!isFetched)
+            binding.openGLView.visibility = booleanToViewVisibility(isFetched)
+            binding.textAbout.visibility = booleanToViewVisibility(!isFetched)
         }
         aboutViewModel.aboutMe.observe(viewLifecycleOwner) { aboutMe ->
-//            binding.textAbout.text = aboutMe
+            binding.textAbout.text = aboutMe
         }
     }
 
